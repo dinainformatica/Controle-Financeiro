@@ -1,0 +1,387 @@
+:root {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: #1e293b;
+    background: #f6f8fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f6f8fb;
+    color: #1e293b;
+}
+
+.app-layout {
+    min-height: 100vh;
+}
+
+/* MENU LATERAL */
+.sidebar {
+    width: 255px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    background: #fff;
+    border-right: 1px solid #e9edf3;
+    padding: 28px 16px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px;
+    margin-bottom: 45px;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.brand-symbol {
+    width: 42px;
+    height: 42px;
+    background: #16a34a;
+    color: white;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.sidebar-label {
+    padding-left: 14px;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 15px;
+    border-radius: 12px;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.sidebar-link i {
+    font-size: 19px;
+}
+
+.sidebar-link:hover {
+    background: #f1f5f9;
+    color: #16a34a;
+}
+
+.sidebar-link.active {
+    background: #eaf8ef;
+    color: #15803d;
+    font-weight: 700;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 15px 10px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main-area {
+    margin-left: 255px;
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 92px;
+    background: white;
+    border-bottom: 1px solid #e9edf3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 750;
+}
+
+.page-subtitle {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-profile strong,
+.user-profile small {
+    display: block;
+}
+
+.user-profile strong {
+    font-size: 13px;
+}
+
+.user-profile small {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    background: #dcfce7;
+    color: #16a34a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.main-content {
+    padding: 30px 32px;
+    max-width: 1600px;
+    margin: auto;
+}
+
+/* DASHBOARD */
+.dashboard-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.dashboard-heading h2 {
+    font-size: 23px;
+    font-weight: 750;
+    margin-bottom: 5px;
+}
+
+.dashboard-heading p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.month-select {
+    width: 165px;
+    border-radius: 10px;
+    padding: 10px 12px;
+    border-color: #e2e8f0;
+}
+
+/* CARTÕES FINANCEIROS */
+.finance-card {
+    background: white;
+    padding: 23px;
+    border-radius: 18px;
+    border: 1px solid #edf0f4;
+    height: 100%;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.025);
+    transition: 0.2s ease;
+}
+
+.finance-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.card-label {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.icon-blue {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.icon-green {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.icon-red {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.icon-purple {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+.card-value {
+    font-size: clamp(20px, 2vw, 27px);
+    font-weight: 750;
+    letter-spacing: -0.8px;
+    margin: 16px 0 6px;
+    overflow-wrap: anywhere;
+}
+
+.card-description {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* GRÁFICOS E TABELAS */
+.content-card {
+    background: white;
+    border: 1px solid #edf0f4;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.025);
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-heading h3 {
+    font-size: 17px;
+    font-weight: 750;
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    color: #94a3b8;
+    font-size: 13px;
+    margin: 0;
+}
+
+.chart-container {
+    width: 100%;
+    height: 320px;
+}
+
+.finance-table {
+    min-width: 560px;
+    margin-bottom: 0;
+}
+
+.finance-table th {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 15px;
+}
+
+.finance-table td {
+    font-size: 13px;
+    padding: 17px 15px;
+    color: #475569;
+}
+
+.finance-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* MENU MOBILE */
+.menu-toggle {
+    border: none;
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 22px;
+}
+
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    z-index: 1040;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 991px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .main-area {
+        margin-left: 0;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .main-content {
+        padding: 20px 14px;
+    }
+
+    .topbar {
+        padding: 0 14px;
+    }
+
+    .dashboard-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .month-select {
+        width: 100%;
+    }
+
+    .content-card {
+        padding: 18px 12px;
+    }
+
+    .finance-card {
+        padding: 20px;
+    }
+
+    .chart-container {
+        height: 260px;
+    }
+}
