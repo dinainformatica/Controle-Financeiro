@@ -18,6 +18,9 @@ import Cadastro from './pages/Cadastro'
 import RecuperarSenha from './pages/RecuperarSenha'
 import AtualizarSenha from './pages/AtualizarSenha'
 
+import Receitas from './pages/Receitas'
+import Despesas from './pages/Despesas'
+
 const paginas = {
   '/' : 'Dashboard',
   '/receitas': 'Receitas',
@@ -64,6 +67,18 @@ function Layout() {
         <main className='main-content'>
           <Routes>
             <Route path='/' element={<Dashboard /> }/>
+            <Route path='/receitas' element={<Receitas />} />
+            <Route path='/despesas' element={<Despesas />} />
+
+            <Route
+              path='/contas'
+              element={<PaginaEmConstrucao titulo="Contas" />}
+            />
+
+            <Route
+              path='/relatorios'
+              element={<PaginaEmConstrucao titulo="Relatórios" />}
+            />
 
             {Object.entries(paginas)
               .filter(([rota]) => rota != '/')
@@ -98,7 +113,7 @@ function App() {
         <Route path='/atualizar-senha' element={<AtualizarSenha />} />
 
         <Route element={<ProtectedRoute />}>
-          <Route path='/' element={<Layout />} />
+          <Route path='/*' element={<Layout />} />
         </Route>
       </Routes>
      </AuthProvider>
