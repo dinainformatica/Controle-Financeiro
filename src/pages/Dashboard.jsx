@@ -191,27 +191,28 @@ function Dashboard() {
 
                 <div className="chart-container">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={grafico} />
+                        <BarChart data={grafico}>
 
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} />
 
-                        <XAxis dataKey="mes" />
-                        <YAxis tickFormatter={v => `${v / 1000}k`} />
-                        <Tooltip formatter={valor => moeda(valor)} />
-                        <Legend />
-                        <Bar
-                            dataKey="receitas"
-                            name="Receitas"
-                            fill='#16a34a'
-                            radius={[6, 6, 0, 0]}
-                        />
+                            <XAxis dataKey="mes" />
+                            <YAxis tickFormatter={v => `${v / 1000}k`} />
+                            <Tooltip formatter={valor => moeda(valor)} />
+                            <Legend />
+                            <Bar
+                                dataKey="receitas"
+                                name="Receitas"
+                                fill='#16a34a'
+                                radius={[6, 6, 0, 0]}
+                            />
 
-                        <Bar
-                            dataKey="despesas"
-                            name="Despesas"
-                            fill='#f87171'
-                            radius={[6, 6, 0, 0]}
-                        />
+                            <Bar
+                                dataKey="despesas"
+                                name="Despesas"
+                                fill='#f87171'
+                                radius={[6, 6, 0, 0]}
+                            />
+                        </BarChart>
                     </ResponsiveContainer>
                 </div>
             </div>
