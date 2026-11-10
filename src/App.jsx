@@ -7,9 +7,16 @@ import {
   useLocation
 } from 'react-router-dom'
 
+import { AuthProvider } from './contexts/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
 import SideBar from './components/Sidebar'
 import Header from './components/Header'
+
 import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+import Cadastro from './pages/Cadastro'
+import RecuperarSenha from './pages/RecuperarSenha'
+import AtualizarSenha from './pages/AtualizarSenha'
 
 const paginas = {
   '/' : 'Dashboard',
@@ -22,12 +29,12 @@ const paginas = {
 function PaginaEmConstrucao({ titulo }) {
   return (
     <div className='content-card text-center py-5'>
-        <i className='bi bi-tools fs-1 text-sucess'></i>
+        <i className='bi bi-tools fs-1 text-success'></i>
         <h2 className='mt-3'>
           {titulo}
         </h2>
 
-        <p className='text-secondary mb-0'>
+        <p className='text-secondary'>
           Esta funcionalidade será desenvolvida em breve.
         </p>
     </div>
@@ -83,7 +90,18 @@ function App() {
 
   return (
    <BrowserRouter>
-      <Layout />
+     <AuthProvider>
+      <Routes>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/cadastro' element={<Cadastro />} />
+        <Route path='/recuperar-senha' element={<RecuperarSenha />} />
+        <Route path='/atualizar-senha' element={<AtualizarSenha />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path='/' element={<Layout />} />
+        </Route>
+      </Routes>
+     </AuthProvider>
    </BrowserRouter>
   )
 }
