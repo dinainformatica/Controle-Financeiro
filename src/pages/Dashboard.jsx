@@ -10,6 +10,8 @@ import {
     Legend
 } from 'recharts'
 
+import { listarContas } from '../services/contas'
+
 import { listarMovimentacoes } from '../services/movimentacoes'
 
 const moeda = valor =>
@@ -47,14 +49,22 @@ function Dashboard() {
     const [mesSelecionado, setMesSelecionado] = useState(dataLocal)
     const [carregando, setCarregando] = useState(true)
     const [erro, setErro] = useState('')
+    const [contas, setContas] = useState([])
 
     useEffect(() => {
         let ativo = true
 
         async function carregar() {
             try {
-                const dados = await listarMovimentacoes()
-                if (ativo) setRegistros(dados)
+                const [dadosMovimentacoes, dadosContas] = await Promise.all([
+                    listarMovimentacoes(),
+                    listarContas()
+                ])
+
+                if(ativo) {
+                    setRegistros(dadosMovimentacoes)
+                    setContas(dadosContas)
+                }
             } catch (error) {
                 if (ativo) setErro(error.message)
             } finally {
@@ -123,6 +133,33 @@ function Dashboard() {
         })
     }, [registros, mesSelecionado])
 
+    const resumoContas = useMemo(() => {
+        const pendentes = contas.filter(
+            conta => conta.status === 'pendente'
+        )
+
+        const hoje = new Date()
+        const dataHoje = [
+            hoje.getFullYear(),
+            String(hoje.getMonth() + 1).padStart(2, '0'),
+            String(hoje.getDate()).padStart(2, '0')
+        ].join('-')
+
+        return {
+            pagar: pendentes
+                .filter(c => c.tipo === 'pagar')
+                .reduce((s, c) => s + Number(c.valor), 0),
+
+            receber: pendentes
+                .filter(c => c.tipo === 'receber')
+                .reduce((s, c) => s + Number(c.valor), 0),
+
+            atrasadas: pendentes
+                .filter(c => c.vencimento < dataHoje)
+                .reduce((s, c) => s + Number(c.valor), 0)
+        }
+    }, [contas])
+
     if (carregando) {
         return <p>Carregando informações financeiras...</p>
     }
@@ -179,6 +216,54 @@ function Dashboard() {
                     cor="icon-purple"
                     descricao="Receitas menos despesas"
                 />
+            </div>
+
+            <div className="row g-3 mb4">
+                <div className="col-md-4">
+                    <div className="finance-card">
+                        <span className="card-label">
+                            Contas a pagar
+                        </span>
+                        <h3 className='card-value'>
+                            {moeda(resumoContas.pagar)}
+                        </h3>
+
+                        <span className="card-description">
+                            Total pendente
+                        </span>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="finance-card">
+                        <span className="card-label">
+                            Contas a receber
+                        </span>
+                        <h3 className='card-value text-success'>
+                            {moeda(resumoContas.receber)}
+                        </h3>
+
+                        <span className="card-description">
+                            Total pendente
+                        </span>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="finance-card">
+                        <span className="card-label">
+                            Contas atrasadas
+                        </span>
+
+                        <h3 className='card-value text-danger'>
+                            {moeda(resumoContas.atrasadas)}
+                        </h3>
+
+                        <span className="card-description">
+                            Total vencido e não liquidado
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <div className="content-card mb-4">

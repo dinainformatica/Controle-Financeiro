@@ -6,7 +6,7 @@ const categorias = {
     ],
 
     despesa: [
-        'Alimentação', 'Moradia', 'Transporte', 'Saúde', 'Educação', 'Lazer', 'Compras', 'Outros'
+        'Alimentação', 'Moradia', 'Transporte', 'Saúde', 'Educação', 'Lazer', 'Cartão', 'Outros'
     ]
 }
 

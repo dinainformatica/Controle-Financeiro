@@ -15,6 +15,7 @@ import Header from './components/Header'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
+import Contas from './pages/Contas'
 import RecuperarSenha from './pages/RecuperarSenha'
 import AtualizarSenha from './pages/AtualizarSenha'
 
@@ -72,7 +73,7 @@ function Layout() {
 
             <Route
               path='/contas'
-              element={<PaginaEmConstrucao titulo="Contas" />}
+              element={<Contas />}
             />
 
             <Route
