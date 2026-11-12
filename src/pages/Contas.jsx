@@ -118,7 +118,7 @@ function Contas() {
     function desfazer(conta) {
         if (!window.confirm('Desfazer a liquidação desta conta?'))
             return
-        executar(conta.id, () => excluirConta(conta.id))
+        executar(conta.id, () => reabrirConta(conta.id))
     }
 
 
@@ -280,7 +280,7 @@ function Contas() {
                                                             className="btn btn-sm btn-outline-danger"
                                                             title="Excluir conta"
                                                             disabled={processando === conta.id}
-                                                            onClick={() => excluirConta(conta)}
+                                                            onClick={() => excluirConta(conta.id)}
                                                         >
                                                             <i className="bi bi-trash"></i>
                                                         </button>

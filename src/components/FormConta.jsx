@@ -35,7 +35,7 @@ export default function FormConta({ onSalvar, onCancelar }) {
         try {
             await onSalvar(form)
         } catch (error) {
-            setErro(erro.message || 'Erro ao cadastrar conta')
+            setErro(error.message || 'Erro ao cadastrar conta')
         } finally {
             setSalvando(false)
         }
@@ -131,7 +131,7 @@ export default function FormConta({ onSalvar, onCancelar }) {
                         min="1"
                         max="120"
                         value={form.parcelas}
-                        onChange={e => alterar('parcelas', e,target.value)}
+                        onChange={e => alterar('parcelas', e.target.value)}
                         required
                     />
                 </div>
