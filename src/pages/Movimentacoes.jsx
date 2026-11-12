@@ -44,12 +44,25 @@ function Movimentacoes({ tipo }) {
     }
 
     useEffect(() => {
-        setFormAberto(false)
-        setEditando(null)
-        setBusca('')
-        setMes('')
-        setCategoria('')
-    },[tipo])
+        let ativo = true
+
+        async function carregarInicial() {
+            try {
+                const dados = await listarMovimentacoes()
+                if (ativo) {
+                    setRegistros(dados)
+                    setErro('')
+                }
+            } catch (error) {
+                if (ativo) setErro(error.message || 'Erro ao carregar dados.')
+            } finally {
+                if (ativo) setCarregando(false)
+            }
+        }
+
+        carregarInicial()
+        return () => { ativo = false }
+    }, [tipo])
 
     const registrosTipo = useMemo(
         () => registros.filter(item => item.tipo === tipo),
@@ -77,6 +90,7 @@ function Movimentacoes({ tipo }) {
 
     async function salvar(dados, id) {
         await salvarMovimentacoes({ ...dados, tipo }, id)
+        setCarregando(true)
         await carregar()
         setFormAberto(false)
         setEditando(null)
@@ -95,9 +109,10 @@ function Movimentacoes({ tipo }) {
 
         try {
             await excluirMovimentacao(item.id)
+            setCarregando(true)
             await carregar()
         } catch (error) {
-            setErro(erro.message || 'Erro ao excluir.')
+            setErro(error.message || 'Erro ao excluir.')
         } finally {
             setExcluindo(null)
         }

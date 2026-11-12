@@ -89,19 +89,9 @@ function Dashboard() {
             .filter(item => item.tipo === 'despesa')
             .reduce((soma, item) => soma + Number(item.valor), 0)
 
-        const ultimoDia = `${mesSelecionado}-31`
-
-        const saldo = registros
-            .filter(item => item.data <= ultimoDia)
-            .reduce((soma, item) => {
-                const valor = Number(item.valor)
-                return soma + (item.tipo === 'receita' ? valor : -valor)
-            }, 0)
-
         return {
             receitas,
             despesas,
-            saldo,
             resultado: receitas - despesas,
             movimentacoes: doMes
         }
@@ -185,14 +175,6 @@ function Dashboard() {
             </div>
 
             <div className="row g-3 mb-4">
-                <CardFinanceiro
-                    titulo="Saldo acumulado"
-                    valor={resumo.saldo}
-                    icone="wallet2"
-                    cor="icon-blue"
-                    descricao="Até o mês selecionado"
-                />
-
                 <CardFinanceiro
                     titulo="Receitas"
                     valor={resumo.receitas}
