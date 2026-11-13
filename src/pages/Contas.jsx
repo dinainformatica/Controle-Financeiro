@@ -53,8 +53,8 @@ function Contas() {
     }, [])
 
     const situacao = conta => {
-        if (conta.status === 'pago')
-            return conta.vencimento < hoje() ? 'atrasado' : 'pendente'
+        if (conta.status === 'pago') return 'pago'
+        return conta.vencimento < hoje() ? 'atrasado' : 'pendente'
 
     }
 
@@ -184,7 +184,7 @@ function Contas() {
             <div className="content-card">
                 <div className="row g-3 mb-4">
                     <div className="col-md-4">
-                        <select className="form-select" value={tipo} onChange={e => setTipo(e.target.value)}>
+                        <select aria-label="Filtrar tipo de conta" className="form-select" value={tipo} onChange={e => setTipo(e.target.value)}>
                             <option value="todos">Todas as contas</option>
                             <option value="pagar">A pagar</option>
                             <option value="receber">A receber</option>
@@ -192,7 +192,7 @@ function Contas() {
                     </div>
 
                     <div className="col-md-4">
-                        <select className="form-select" value={status} onChange={e => setStatus(e.target.value)}>
+                        <select aria-label="Filtrar situação da conta" className="form-select" value={status} onChange={e => setStatus(e.target.value)}>
                             <option value="todos">Todos os status</option>
                             <option value="pendente">Pendentes</option>
                             <option value="atrasado">Atrasadas</option>
@@ -213,7 +213,7 @@ function Contas() {
                 {carregando ? (
                     <p className="text-secondary">Carregando contas...</p>
                 ) : filtradas.length === 0 ? (
-                    <p className="text-secondary text-center py-4">Nenhum conta encontrada.</p>
+                    <p className="text-secondary text-center py-4">Nenhuma conta encontrada.</p>
                 ) : (
                     <div className="table-responsive">
                         <table className="table finance-table align-middle">
@@ -251,7 +251,7 @@ function Contas() {
                                             <td>{moeda(Number(conta.valor))}</td>
 
                                             <td>
-                                                <span className={`badge ${atual === 'pago' ? 'text-bg-sucess' : atual === 'atrasado' ? 'text-bg-danger' : 'text-bg-warning'}`}>
+                                                <span className={`badge ${atual === 'pago' ? 'text-bg-success' : atual === 'atrasado' ? 'text-bg-danger' : 'text-bg-warning'}`}>
                                                     {atual === 'pago'
                                                         ? conta.tipo === 'pagar' ? 'Pago' : 'Recebido'
                                                         : atual === 'atrasado' ? 'Atrasado' : 'Pendente'}
@@ -262,7 +262,7 @@ function Contas() {
                                                 {concluida ? (
                                                     <button
                                                         className="btn btn-sm btn-outline-secondary"
-                                                        disabled={processando === conta.id}
+                                                        disabled={!!processando}
                                                         onClick={() => desfazer(conta)}
                                                     >
                                                         Desfazer
@@ -270,7 +270,7 @@ function Contas() {
                                                 ) : (
                                                     <div className="d-flex justify-content-end gap-2">
                                                         <button className="btn btn-sm btn-success"
-                                                        disabled={processando === conta.id} 
+                                                        disabled={!!processando} 
                                                         onClick={() => confirmar(conta)}   
                                                     >
                                                             Confirmar
@@ -279,8 +279,9 @@ function Contas() {
                                                         <button 
                                                             className="btn btn-sm btn-outline-danger"
                                                             title="Excluir conta"
-                                                            disabled={processando === conta.id}
-                                                            onClick={() => excluirConta(conta.id)}
+                                                            disabled={!!processando}
+                                                            aria-label={`Excluir ${conta.descricao}`}
+                                                            onClick={() => { if (window.confirm('Excluir esta conta pendente?')) executar(conta.id, () => excluirConta(conta.id)) }}
                                                         >
                                                             <i className="bi bi-trash"></i>
                                                         </button>

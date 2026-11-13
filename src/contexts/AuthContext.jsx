@@ -5,15 +5,17 @@ import {
     useState,
 } from 'react'
 
-import { supabase } from '../services/supabase'
+import { supabase, modoDemo } from '../services/supabase'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-    const [usuario, setUsuario] = useState(null)
+    const demo = modoDemo()
+    const [usuario, setUsuario] = useState(demo ? { id: 'demo', email: 'teste@exemplo.local', user_metadata: { nome: 'Conta de teste' } } : null)
     const [carregando, setCarregando] = useState(true)
 
     useEffect(() => {
+        if (demo || !supabase) { setCarregando(false); return }
         let ativo = true
 
         const {
@@ -38,7 +40,7 @@ export function AuthProvider({ children }) {
 
             setUsuario(data.session?.user ?? null)
             setCarregando(false)
-        })
+        }).catch(() => { if (ativo) { setUsuario(null); setCarregando(false) } })
 
         return() => {
             ativo = false
@@ -65,11 +67,14 @@ export function AuthProvider({ children }) {
     }
 
     async function sair() {
+        if (demo) { sessionStorage.removeItem('mf-demo'); window.location.assign('/'); return {error:null} }
         return supabase.auth.signOut()
     }
 
     return (
         <AuthContext.Provider value={{
+            modoDemo: demo,
+            encerrarDemo: () => { sessionStorage.removeItem('mf-demo'); window.location.assign('/'); },
             usuario,
             carregando,
             entrar,

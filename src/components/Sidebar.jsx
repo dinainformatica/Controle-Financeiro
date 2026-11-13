@@ -49,7 +49,7 @@ function Sidebar({ aberto, fechar }) {
 
                 <div className="sidebar-bottom">
                     <i className="bi bi-shield-check me-2"></i>
-                    Ambiente de demonstração
+                    Acesso privado
                 </div>
             </aside>
         </>

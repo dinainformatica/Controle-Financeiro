@@ -181,7 +181,7 @@ function Movimentacoes({ tipo }) {
                     <div className="col-md-5">
                         <input 
                             className="form-control"
-                            placeholder="Buscar pela descrição..."
+                            aria-label="Buscar movimentações" placeholder="Buscar pela descrição..."
                             value={busca}
                             onChange={e => setBusca(e.target.value)}
                         />
@@ -234,7 +234,7 @@ function Movimentacoes({ tipo }) {
                             <tbody>
                                 {filtrados.map(item => (
                                     <tr key={item.id}>
-                                        <td className="fw-semibold">{item.descricao}</td>
+                                        <td className="fw-semibold">{item.descricao}{item.conta_id && <small className="d-block text-secondary">Baixa vinculada a uma conta</small>}</td>
                                         <td>{item.categoria}</td>
                                         <td>{formatarData(item.data)}</td>
                                         <td className={tipo === 'receita' ? 'text-success' : 'text-danger'}>
@@ -244,7 +244,8 @@ function Movimentacoes({ tipo }) {
                                         <td className="text-end">
                                             <button
                                                 className="btn btn-sm btn-outline-primary me-2"
-                                                title="Editar"
+                                                disabled={!!item.conta_id}
+                                                title={item.conta_id ? "Gerencie esta baixa na página Contas" : "Editar"}
                                                 aria-label={`Editar ${item.descricao}`}
                                                 onClick={() => {
                                                     setEditando(item)
@@ -258,7 +259,7 @@ function Movimentacoes({ tipo }) {
                                                 className="btn btn-sm btn-outline-danger"
                                                 title="Excluir"
                                                 aria-label={`Excluir ${item.descricao}`}
-                                                disabled={excluindo === item.id}
+                                                disabled={!!excluindo || !!item.conta_id}
                                                 onClick={() => excluir(item)}
                                             >
                                                 <i className="bi bi-trash"></i>

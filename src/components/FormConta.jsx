@@ -10,6 +10,7 @@ const  hoje = () => {
 
 export default function FormConta({ onSalvar, onCancelar }) {
     const [form, setForm] = useState({
+        request_id: crypto.randomUUID(),
         descricao: '',
         tipo: 'pagar',
         categoria: 'Moradia',
@@ -21,7 +22,7 @@ export default function FormConta({ onSalvar, onCancelar }) {
     const [salvando, setSalvando] = useState(false)
     const [erro, setErro] = useState('')
 
-    const categorias = form.tipo === 'pagar' ? ['Moradia', 'Alimentação', 'Transporte', 'Saúde', 'Educação', 'Cartão', 'Serviços', 'Outros'] : ['Salário', 'Serviço', 'Vendas', 'Aluguel', 'Outros']
+    const categorias = form.tipo === 'pagar' ? ['Moradia', 'Alimentação', 'Transporte', 'Saúde', 'Educação', 'Cartão', 'Serviços', 'Outros'] : ['Salário', 'Serviços', 'Vendas', 'Aluguel', 'Outros']
 
     function alterar(campo, valor) {
         setForm(atual => ({ ...atual, [campo]: valor}))
@@ -47,11 +48,10 @@ export default function FormConta({ onSalvar, onCancelar }) {
 
             <div className="row g-3">
                 <div className="col-md-6">
-                    <label className='form-label'>
+                    <label className='form-label' htmlFor="conta-tipodeconta">
                         Tipo de conta
                     </label>
-
-                    <select
+                    <select id="conta-tipodeconta"
                         className='form-select'
                         value={form.tipo}
                         onChange={e => {
@@ -69,9 +69,8 @@ export default function FormConta({ onSalvar, onCancelar }) {
                 </div>
 
                 <div className="col-md-6">
-                    <label className='form-label'>Categoria</label>
-
-                    <select
+                    <label className='form-label' htmlFor="conta-categoria">Categoria</label>
+                    <select id="conta-categoria"
                         className='form-select'
                         value={form.categoria}
                         onChange={e => alterar('categoria', e.target.value)}
@@ -85,11 +84,10 @@ export default function FormConta({ onSalvar, onCancelar }) {
                 </div>
 
                 <div className="col-12">
-                    <label className='form-label'>
+                    <label className='form-label' htmlFor="conta-descrio">
                         Descrição
                     </label>
-
-                    <input 
+                    <input id="conta-descrio" 
                         className='form-control'
                         placeholder='Ex.: Compra de notebook'
                         value={form.descricao}
@@ -100,8 +98,8 @@ export default function FormConta({ onSalvar, onCancelar }) {
                 </div>
 
                 <div className="col-md-4">
-                    <label className='form-label'>Valor total (R$)</label>
-                    <input
+                    <label className='form-label' htmlFor="conta-valortotalr">Valor total (R$)</label>
+                    <input id="conta-valortotalr"
                         type='number'
                         className='form-control'
                         min="0.01"
@@ -113,19 +111,20 @@ export default function FormConta({ onSalvar, onCancelar }) {
                 </div>
 
                 <div className="col-md-4">
-                    <label className='form-label'>Primeiro vencimento</label>
-                    <input
+                    <label className='form-label' htmlFor="conta-primeirovencimento">Primeiro vencimento</label>
+                    <input id="conta-primeirovencimento"
                         type='date'
                         className='form-control'
                         value={form.vencimento}
+                        onInput={e => alterar('vencimento', e.currentTarget.value)}
                         onChange={e => alterar('vencimento', e.target.value)}
                         required
                     />
                 </div>
 
                 <div className="col-md-4">
-                    <label className='form-label'></label>
-                    <input
+                    <label className='form-label' htmlFor="conta-nmerodeparcelas">Número de parcelas</label>
+                    <input id="conta-nmerodeparcelas"
                         type='number'
                         className='form-control'
                         min="1"
@@ -145,6 +144,8 @@ export default function FormConta({ onSalvar, onCancelar }) {
                 <button
                     type='button'
                     className='btn btn-outline-secondary'
+                    onClick={onCancelar}
+                    disabled={salvando}
                 >
                     Cancelar
                 </button>

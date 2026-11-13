@@ -17,6 +17,7 @@ function FormMovimentacao({
     onCancelar
 }) {
     const [form, setForm] = useState({
+        request_id: crypto.randomUUID(),
         descricao: '',
         categoria: '',
         valor: '',
@@ -28,6 +29,7 @@ function FormMovimentacao({
 
     useEffect(() => {
         setForm({
+            request_id: crypto.randomUUID(),
             descricao: registro?.descricao ?? '',
             categoria: registro?.categoria ?? '',
             valor: registro?.valor ?? '',
@@ -65,8 +67,8 @@ function FormMovimentacao({
             )}
 
             <div className="mb-3">
-                <label className="form-label">Descrição</label>
-                <input
+                <label className="form-label" htmlFor="mov-descrio">Descrição</label>
+                    <input id="mov-descrio"
                     className="form-control"
                     value={form.descricao}
                     onChange={e => alterar('descricao', e.target.value)}
@@ -78,8 +80,8 @@ function FormMovimentacao({
 
             <div className="row g-3">
                 <div className="col-md-6">
-                    <label className="form-label">Valor (R$)</label>
-                    <input
+                    <label className="form-label" htmlFor="mov-valorr">Valor (R$)</label>
+                    <input id="mov-valorr"
                         type="number"
                         className="form-control"
                         value={form.valor}
@@ -93,19 +95,20 @@ function FormMovimentacao({
                 </div>
 
                 <div className="col-md-6">
-                    <label className="form-label">Data</label>
-                    <input
+                    <label className="form-label" htmlFor="mov-data">Data</label>
+                    <input id="mov-data"
                         type="date"
                         className="form-control"
                         value={form.data}
+                        onInput={e => alterar('data', e.currentTarget.value)}
                         onChange={e => alterar('data', e.target.value)}
                         required
                     />
                 </div>
 
                 <div className="col-12">
-                    <label className="form-label">Categoria</label>
-                    <select
+                    <label className="form-label" htmlFor="mov-categoria">Categoria</label>
+                    <select id="mov-categoria"
                         className="form-select"
                         value={form.categoria}
                         onChange={e => alterar('categoria', e.target.value)}

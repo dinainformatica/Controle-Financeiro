@@ -626,3 +626,510 @@ body {
         width: 100%;
     }
 }
+
+/* ETAPA 6 — RELATÓRIOS LIGHT MODERN */
+.eyebrow {
+    display: block;
+    color: #15803d;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.6px;
+    margin-bottom: 10px
+}
+
+.report-heading h2 {
+    font-size: 27px;
+    letter-spacing: -.8px
+}
+
+.btn-white {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 13px;
+    padding: 11px 15px;
+    color: #475569
+}
+
+.btn-white:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1
+}
+
+.report-actions .btn-success {
+    font-size: 13px
+}
+
+.filter-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0
+}
+
+.report-filters {
+    padding: 22px
+}
+
+.report-filters .form-label {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 650
+}
+
+.report-filters .form-select,
+.report-filters .form-control {
+    font-size: 12px
+}
+
+.period-shortcuts {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap
+}
+
+.period-shortcuts button {
+    background: #f6f8fb;
+    border: 0;
+    border-radius: 7px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #64748b
+}
+
+.period-shortcuts button:hover {
+    background: #eaf8ef;
+    color: #15803d
+}
+
+.report-context {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin-bottom: 7px;
+    gap: 8px;
+    flex-wrap: wrap
+}
+
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #16a34a;
+    border-radius: 50%;
+    margin-right: 7px
+}
+
+.report-note {
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 22px
+}
+
+.report-stat .card-value {
+    font-size: 29px;
+    margin: 18px 0 8px
+}
+
+.report-stat .card-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 17px
+}
+
+.balance-card {
+    background: linear-gradient(120deg, #f0fdf4, #fff);
+    border-color: #d9eee0
+}
+
+.stat-change {
+    font-size: 11px;
+    margin-top: 8px;
+    font-weight: 600
+}
+
+.chart-badge {
+    font-size: 10px;
+    background: #f6f8fb;
+    border: 1px solid #e9edf3;
+    color: #64748b;
+    padding: 5px 10px;
+    border-radius: 7px
+}
+
+.category-legend {
+    display: grid;
+    gap: 11px;
+    font-size: 11px
+}
+
+.category-legend>div,
+.category-legend span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px
+}
+
+.category-legend i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.type-pill {
+    font-size: 10px;
+    padding: 5px 9px;
+    border-radius: 7px;
+    display: inline-block
+}
+
+.type-pill.income {
+    background: #eaf8ef;
+    color: #15803d
+}
+
+.type-pill.expense {
+    background: #fff1f2;
+    color: #be4755
+}
+
+.empty-state {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #94a3b8;
+    padding: 20px
+}
+
+.empty-state>i {
+    font-size: 30px;
+    margin-bottom: 15px
+}
+
+.empty-state h4 {
+    font-size: 14px;
+    color: #64748b
+}
+
+.empty-state p {
+    font-size: 12px;
+    margin-bottom: 0
+}
+
+.demo-banner {
+    border: 1px solid #cfe8d6;
+    background: #eef8f1;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #166534
+}
+
+.print-only {
+    display: none
+}
+
+.setup-layout {
+    background: #f6f8fb;
+    min-height: 100vh
+}
+
+.setup-header {
+    max-width: 1240px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 40px
+}
+
+.private-chip {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #15803d;
+    background: #eaf8ef;
+    border: 1px solid #d9eee0;
+    border-radius: 20px;
+    padding: 7px 11px
+}
+
+.setup-main {
+    max-width: 1160px;
+    margin: 12px auto 0;
+    padding: 20px 25px 40px
+}
+
+.setup-title {
+    font-size: clamp(32px, 3.4vw, 50px);
+    font-weight: 800;
+    letter-spacing: -1.8px;
+    line-height: 1.16;
+    margin: 18px 0 24px
+}
+
+.setup-title span {
+    color: #15803d
+}
+
+.setup-description {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.8;
+    max-width: 430px
+}
+
+.setup-card {
+    padding: 32px;
+    max-width: 480px;
+    margin-left: auto;
+    box-shadow: 0 14px 50px #1e293b08
+}
+
+.setup-card h2 {
+    font-size: 23px;
+    font-weight: 750;
+    letter-spacing: -.5px
+}
+
+.setup-card .form-label {
+    font-size: 12px;
+    font-weight: 650;
+    color: #475569
+}
+
+.setup-preview {
+    max-width: 425px;
+    background: white;
+    border: 1px solid #e9edf3;
+    border-radius: 18px;
+    padding: 22px;
+    margin-top: 32px;
+    font-size: 12px;
+    font-weight: 600
+}
+
+.mini-bars {
+    height: 100px;
+    display: flex;
+    gap: 13px;
+    align-items: end;
+    padding: 5px 0;
+    border-bottom: 1px solid #edf0f4
+}
+
+.mini-bars div {
+    flex: 1;
+    max-width: 30px;
+    background: #bbdfc8;
+    border-radius: 5px 5px 0 0
+}
+
+.mini-bars div:nth-child(even) {
+    background: #16a34a
+}
+
+.setup-divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #94a3b8;
+    font-size: 11px;
+    margin: 22px 0
+}
+
+.setup-divider:before,
+.setup-divider:after {
+    content: '';
+    height: 1px;
+    background: #e9edf3;
+    flex: 1
+}
+
+.setup-footer {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 11px;
+    padding: 20px
+}
+
+@media(max-width:991px) {
+    .setup-card {
+        max-width: none;
+        margin: 0
+    }
+
+    .setup-main {
+        padding: 10px 18px 35px
+    }
+
+    .setup-header {
+        padding: 20px
+    }
+
+    .setup-preview {
+        display: none
+    }
+
+    .report-actions {
+        width: 100%
+    }
+
+    .report-actions .btn {
+        flex: 1
+    }
+
+    .report-heading {
+        flex-wrap: wrap
+    }
+}
+
+@media(max-width:575px) {
+    .report-stat .card-value {
+        font-size: 28px
+    }
+
+    .report-filters {
+        padding: 17px
+    }
+
+    .setup-card {
+        padding: 23px
+    }
+
+    .setup-title {
+        letter-spacing: -1px
+    }
+
+    .setup-description {
+        font-size: 14px
+    }
+
+    .report-context {
+        font-size: 11px
+    }
+
+    .report-actions .btn {
+        font-size: 11px;
+        padding: 10px 9px
+    }
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 12mm
+    }
+
+    .sidebar,
+    .topbar,
+    .demo-banner,
+    .no-print,
+    .report-actions {
+        display: none !important
+    }
+
+    .main-area {
+        margin: 0
+    }
+
+    .main-content {
+        padding: 0;
+        max-width: none
+    }
+
+    .print-only {
+        display: block
+    }
+
+    .reports-page {
+        font-size: 10px
+    }
+
+    .finance-card,
+    .content-card {
+        box-shadow: none;
+        transform: none !important;
+        break-inside: avoid;
+        padding: 12px;
+        border-color: #ddd
+    }
+
+    .content-card:has(.print-only) {
+        break-inside: auto
+    }
+
+    .content-card .table {
+        font-size: 9px
+    }
+
+    .finance-table {
+        min-width: 0;
+        width: 100%
+    }
+
+    .finance-table th,
+    .finance-table td {
+        padding: 7px;
+        font-size: 9px
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap
+    }
+
+    .col-md-4 {
+        width: 33.333%
+    }
+
+    .col-xl-8 {
+        width: 65%
+    }
+
+    .col-xl-4 {
+        width: 35%
+    }
+
+    .chart-container {
+        height: 220px
+    }
+
+    .card-value {
+        font-size: 20px !important
+    }
+
+    .report-heading h2 {
+        font-size: 24px
+    }
+
+    .report-heading {
+        margin-bottom: 16px
+    }
+
+    thead {
+        display: table-header-group
+    }
+
+    tr {
+        break-inside: avoid
+    }
+
+    .report-note {
+        margin-bottom: 14px
+    }
+
+    body {
+        background: white
+    }
+
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact
+    }
+}

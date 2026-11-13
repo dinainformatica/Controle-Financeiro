@@ -10,9 +10,9 @@ import {
     Legend
 } from 'recharts'
 
-import { listarContas } from '../services/contas'
+import { carregarDados } from '../services/dados'
 
-import { listarMovimentacoes } from '../services/movimentacoes'
+
 
 const moeda = valor =>
     new Intl.NumberFormat('pt-BR', {
@@ -56,10 +56,7 @@ function Dashboard() {
 
         async function carregar() {
             try {
-                const [dadosMovimentacoes, dadosContas] = await Promise.all([
-                    listarMovimentacoes(),
-                    listarContas()
-                ])
+                const { movimentacoes: dadosMovimentacoes, contas: dadosContas } = await carregarDados()
 
                 if(ativo) {
                     setRegistros(dadosMovimentacoes)
@@ -200,7 +197,7 @@ function Dashboard() {
                 />
             </div>
 
-            <div className="row g-3 mb4">
+            <div className="row g-3 mb-4">
                 <div className="col-md-4">
                     <div className="finance-card">
                         <span className="card-label">
