@@ -17,6 +17,14 @@ const formatarData = data => {
     return `${dia}/${mes}/${ano}`
 }
 
+const mesAtual = () => {
+    const hoje = new Date()
+
+    return `${hoje.getFullYear()}-${String(
+        hoje.getMonth() + 1
+    ).padStart(2, '0')}`
+}
+
 function Movimentacoes({ tipo }) {
     const [registros, setRegistros] = useState([])
     const [carregando, setCarregando] = useState(true)
@@ -24,7 +32,7 @@ function Movimentacoes({ tipo }) {
     const [formAberto, setFormAberto] = useState(false)
     const [editando, setEditando] = useState(null)
     const [busca, setBusca] = useState('')
-    const [mes, setMes] = useState('')
+    const [mes, setMes] = useState(mesAtual)
     const [categoria, setCategoria] = useState('')
     const [excluindo, setExcluindo] = useState(null)
 
@@ -75,8 +83,8 @@ function Movimentacoes({ tipo }) {
 
     const filtrados = registrosTipo.filter(item => {
         const correspondeBusca = item.descricao
-        .toLocaleLowerCase('pt-BR')
-        .includes(busca.toLocaleLowerCase('pt-BR'))
+            .toLocaleLowerCase('pt-BR')
+            .includes(busca.toLocaleLowerCase('pt-BR'))
 
         const correspondeMes = !mes || item.data.startsWith(mes)
         const correspondeCategoria = !categoria || item.categoria === categoria
@@ -101,7 +109,7 @@ function Movimentacoes({ tipo }) {
             `Deseja realmente excluir "${item.descricao}"?`
         )
 
-        if(!confirmado)
+        if (!confirmado)
             return
 
         setExcluindo(item.id)
@@ -179,7 +187,7 @@ function Movimentacoes({ tipo }) {
             <div className="content-card">
                 <div className="row g-3 mb-4">
                     <div className="col-md-5">
-                        <input 
+                        <input
                             className="form-control"
                             aria-label="Buscar movimentações" placeholder="Buscar pela descrição..."
                             value={busca}
